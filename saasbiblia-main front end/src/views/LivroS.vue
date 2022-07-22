@@ -48,7 +48,7 @@ export default {
 
   </div>
       <div class="form-input">
-      <input placeholder="Novo Livro" type="text" v-model="novo_livro" />
+      <input placeholder="Nome do Livro" type="text" v-model="novo_livro" />
       <input placeholder="Categoria" type="text" v-model="novo_categoria" />
       <input placeholder="Editora" type="text" v-model="novo_editora" />
       <input placeholder="Quantidade" type="number" v-model="novo_quantidade" />

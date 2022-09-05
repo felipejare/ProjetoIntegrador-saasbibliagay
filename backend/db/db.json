@@ -1,15 +1,30 @@
 {
-    "categorias": [
-        {"id": 1, "description": "Categoria 1"},
-        {"id": 2, "description": "Categoria 2"}
-    ],
-    "editoras": [
-      {"id": 1, "editora": "Editora 1"}
-    ],
-    "livros": [
-      {"id": 1, "titulo": "Livro 1", "categoria": "Categoria 1", "editora": "Editora 1", "quantidade": "1", "preço": "1,00"}
-    ],
-    "autores": [
-      {"id": 1, "nomeautor": "Nome do autor1"}
-    ]
+  "categorias": [
+    {
+      "id": 1,
+      "description": "Categoria 1"
+    },
+    {
+      "id": 2,
+      "description": "Categoria 2"
+    }
+  ],
+  "editoras": [
+    {
+      "id": 1,
+      "editora": "Editora 1"
+    }
+  ],
+  "livros": [
+    {
+      "titulo": "2112",
+      "id": 1
+    }
+  ],
+  "autores": [
+    {
+      "id": 1,
+      "nomeautor": "Nome do autor1"
+    }
+  ]
 }

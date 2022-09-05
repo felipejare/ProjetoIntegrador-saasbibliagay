@@ -17,7 +17,7 @@ export default class AutoresApi {
         return response.data;
     }
     async atualizarAutores(autor) {
-        const response = await axios.put(`http://localhost:4000/autores/${autor}`,autores,);
+        const response = await axios.put(`http://localhost:4000/autores/${autor}`,autor,);
         return response.data;
     }
 }

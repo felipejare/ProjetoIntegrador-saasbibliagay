@@ -1,31 +1,34 @@
 <script>
-import {v4 as uuidv4} from 'uuid';
+import AutoresApi from "@/api/autores.js"
+const autoresApi = new AutoresApi()
 export default {
-    data() {       
-      return {
-            autores: [
-                { id: "33129ae6-a24a-473d-843f-49cad354acf1", nome: "Autor 1"  },
-                { id: "136156f9-5c1b-4fb3-aeff-ed5bd72ff176", nome: "Autor 2"  },
-            ],
-            novo_autor: '',
-        };
-    },
-    methods:  {
-      salvar(){
-        if (this.novo_autor !==""){
-          const novo_id =uuidv4();
-          this.autores.push({
-            id: novo_id,
-            nome: this.novo_autor,
-          });
-          this.novo_autor = "";
-        }
-      },
-      excluir(autor){
-        const indice = this.autores.indexOf(autor);
-        this.autores.splice(indice, 1);
+  data() {
+    return{
+      autor: {},
+      autores:[],
+    };
+  },
+  async created() {
+    this.autores = await autoresApi.buscarTodasAsAutores();
+  },
+  methods: {
+    async salvar() {
+      if (this.autor.id) {
+        await autoresApi.atualizarAutores(this.autor);
+      } else {
+        await autoresApi.adicionarAutores(this.autor)
       }
+      this.autores = await autoresApi.buscarTodasAsAutores();
+      this.autor = {};
     },
+    async excluir(autor) {
+      await autoresApi.excluirAutores(autor.id);
+      this.autores = await autoresApi.buscarTodasAsAutores();
+    },
+    editar(autor) {
+      Object.assign(this.autor, autor)
+    },
+  },
 };
 </script>
 
@@ -35,7 +38,7 @@ export default {
       <h1>Autores</h1>
     </div>
     <div class="form-input">
-      <input type="text" v-model="novo_autor" />
+      <input type="text" v-model="autor.nome" />
       <button @click="salvar">Salvar</button>
     </div>
     <div class="list-autores">

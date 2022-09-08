@@ -1,31 +1,34 @@
 <script>
-import {v4 as uuidv4} from 'uuid';
+import CategoriasApi from "@/api/categorias.js"
+const categoriasApi = new CategoriasApi()
 export default {
-    data() {       
-      return {
-            categorias: [
-                { id: "33129ae6-a24a-473d-843f-49cad354acf1", nome: "Categoria 1"  },
-                { id: "136156f9-5c1b-4fb3-aeff-ed5bd72ff176", nome: "Categoria 2"  },
-            ],
-            novo_categoria: '',
-        };
-    },
-    methods:  {
-      salvar(){
-        if (this.novo_categoria !==""){
-          const novo_id =uuidv4();
-          this.categorias.push({
-            id: novo_id,
-            nome: this.novo_categoria,
-          });
-          this.novo_categoria = "";
-        }
-      },
-      excluir(categoria){
-        const indice = this.categorias.indexOf(categoria);
-        this.categorias.splice(indice, 1);
+  data() {
+    return{
+      categoria: {},
+      categorias:[],
+    };
+  },
+  async created() {
+    this.categorias = await categoriasApi.buscarTodasAsCategorias();
+  },
+  methods: {
+    async salvar() {
+      if (this.categoria.id) {
+        await categoriasApi.atualizarCategorias(this.categoria);
+      } else {
+        await categoriasApi.adicionarCategorias(this.categoria)
       }
+      this.categorias = await categoriasApi.buscarTodasAsCategorias();
+      this.categoria = {};
     },
+    async excluir(categoria) {
+      await categoriasApi.excluirCategorias(categoria.id);
+      this.categorias = await categoriasApi.buscarTodasAsCategorias();
+    },
+    editar(categoria) {
+      Object.assign(this.categoria, categoria)
+    },
+  },
 };
 </script>
 <template>
@@ -34,7 +37,7 @@ export default {
       <h1>Categorias</h1>
     </div>
     <div class="form-input">
-      <input type="text" v-model="novo_categoria" />
+      <input type="text" v-model="categoria.nome" @keyup.enter="salvar" />
       <button @click="salvar">Salvar</button>
     </div>
     <div class="list-categorias">
@@ -42,7 +45,7 @@ export default {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Descrição</th>
+            <th>Categoria</th>
             <th>Ações</th>
           </tr>
         </thead>

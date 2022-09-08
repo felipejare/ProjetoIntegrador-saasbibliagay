@@ -1,35 +1,36 @@
 <script>
-import { v4 as uuidv4 } from "uuid";
+  import EditorasApi from "@/api/editoras.js"
+const editorasApi = new EditorasApi()
 export default {
   data() {
-    return {
-      editores: [
-        { id: "33129ae6-a24a-473d-843f-49cad354acf1", nome: "Editor 1", site: "Site 1" },
-        { id: "136156f9-5c1b-4fb3-aeff-ed5bd72ff176", nome: "Editor 2", site: "Site 2" },
-      ],
-      novo_editor: "",
-      novo_site: "",
+    return{
+      editora: {},
+      editoras:[],
     };
   },
+  async created() {
+    this.editoras = await editorasApi.buscarTodasAsEditoras();
+  },
   methods: {
-    salvar() {
-      if (this.novo_editor !== "") {
-        const novo_id = uuidv4();
-        this.editores.push({
-          id: novo_id,
-          nome: this.novo_editor,
-          site: this.novo_site,
-        });
-        this.novo_editor = "";
-        this.novo_site = "";
+    async salvar() {
+      if (this.editora.id) {
+        await editorasApi.atualizarEditoras(this.editora);
+      } else {
+        await editorasApi.adicionarEditoras(this.editora)
       }
+      this.editoras = await editorasApi.buscarTodasAsEditoras();
+      this.editora = {};
     },
-    excluir(editor) {
-      const indice = this.editores.indexOf(editor);
-      this.editores.splice(indice, 1);
+    async excluir(editora) {
+      await editorasApi.excluirEditoras(editora.id);
+      this.editoras = await editorasApi.buscarTodasAsEditoras();
+    },
+    editar(editora) {
+      Object.assign(this.editora, editora)
     },
   },
 };
+
 </script>
 
 <template>
@@ -38,11 +39,11 @@ export default {
       <h1>Editoras</h1>
     </div>
     <div class="form-input">
-      <input type="text" v-model="novo_editor" />
+      <input type="text" v-model="editora.nome" @keyup.enter="salvar" />
       <input type="text" v-model="novo_site" />
       <button @click="salvar">Salvar</button>
     </div>
-    <div class="list-editores">
+    <div class="list-editoras">
       <table>
         <thead>
           <tr>
@@ -54,12 +55,12 @@ export default {
         </thead>
 
         <tbody>
-          <tr v-for="editor in editores" :key="editor.id">
-            <td>{{ editor.id }}</td>
-            <td>{{ editor.nome }}</td>
-            <td>{{ editor.site }}</td>
+          <tr v-for="editora in editoras" :key="editora.id">
+            <td>{{ editora.id }}</td>
+            <td>{{ editora.nome }}</td>
+            <td>{{ editora.site }}</td>
             <td>
-              <button @click="excluir(editor)">Excluir</button>
+              <button @click="excluir(editora)">Excluir</button>
             </td>
           </tr>
         </tbody>

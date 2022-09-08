@@ -8,7 +8,7 @@ export default class EditorasApi {
         const response = await axios.get(`http://localhost:4000/editoras${id}`);
         return response.data;
     }
-    async adicionaEditoras(editora) {
+    async adicionarEditoras(editora) {
         const response = await axios.post("http://localhost:4000/editoras", editora);
         return response.data;
     }

@@ -9,7 +9,7 @@ export default {
     };
   },
   async created() {
-    this.autores = await autoresApi.buscarTodasAsAutores();
+    this.autores = await autoresApi.buscarTodosOsAutores();
   },
   methods: {
     async salvar() {
@@ -18,12 +18,12 @@ export default {
       } else {
         await autoresApi.adicionarAutores(this.autor)
       }
-      this.autores = await autoresApi.buscarTodasAsAutores();
+      this.autores = await autoresApi.buscarTodosOsAutores();
       this.autor = {};
     },
     async excluir(autor) {
       await autoresApi.excluirAutores(autor.id);
-      this.autores = await autoresApi.buscarTodasAsAutores();
+      this.autores = await autoresApi.buscarTodosOsAutores();
     },
     editar(autor) {
       Object.assign(this.autor, autor)
@@ -38,7 +38,7 @@ export default {
       <h1>Autores</h1>
     </div>
     <div class="form-input">
-      <input type="text" v-model="autor.nome" />
+      <input type="text" v-model="autor.nome" @keyup.enter="salvar" />
       <button @click="salvar">Salvar</button>
     </div>
     <div class="list-autores">

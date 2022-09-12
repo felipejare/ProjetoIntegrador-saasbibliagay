@@ -40,7 +40,7 @@ export default {
     </div>
     <div class="form-input">
       <input type="text" v-model="editora.nome" @keyup.enter="salvar" />
-      <input type="text" v-model="novo_site" />
+      <input type="text" v-model="editora.site"  />
       <button @click="salvar">Salvar</button>
     </div>
     <div class="list-editoras">

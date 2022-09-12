@@ -9,7 +9,7 @@ export default class AutoresApi {
         return response.data; 
     }
     async adicionarAutores(autor) {
-        const response = await axios.ad("http://localhost:4000/autores" ,autor);
+        const response = await axios.post("http://localhost:4000/autores" ,autor);
         return response.data;
     }
     async excluirAutores(id) {

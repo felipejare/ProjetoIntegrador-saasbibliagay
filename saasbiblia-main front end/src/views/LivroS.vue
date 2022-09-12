@@ -39,12 +39,11 @@ export default {
 
   </div>
       <div class="form-input">
-      <input placeholder="Nome do Livro" type="text" v-model="titulo" />
+      <input type="text" placeholder="Titulo do Livro"  v-model="livro.nome" @keyup.enter="salvar">
       <input placeholder="Categoria" type="text" v-model="categoria" />
       <input placeholder="Editora" type="text" v-model="editora" />
       <input placeholder="Quantidade" type="number" v-model="quantidade" />
       <input placeholder="Preço" type="number" v-model="preço" />
-      <input type="text" v-model="livro.nome" @keyup.enter="salvar">
       <button @click="salvar">Adicionar livro</button>
     </div>
     <div class="list-livros">
@@ -70,6 +69,7 @@ export default {
             <td>{{ livro.quantidade }}</td>
             <td>{{ livro.preço }}</td>
             <td>
+              <button @click="editar(livro)">Editar</button>
               <button @click="excluir(livro)">Excluir</button>
             </td>
           </tr>

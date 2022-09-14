@@ -1,15 +1,23 @@
 <script>
+  import CategoriasApi from "@/api/categorias.js"
+const categoriasApi = new CategoriasApi()
 import LivrosApi from "@/api/livros.js"
 const livrosApi = new LivrosApi()
+import EditorasApi from "@/api/editoras.js"
+const editorasApi = new EditorasApi()
 export default {
   data() {
     return{
       livro: {},
       livros:[],
+      categorias:[],
+      editoras:[],
     };
   },
   async created() {
     this.livros = await livrosApi.buscarTodosOsLivros();
+    this.categorias = await categoriasApi.buscarTodasAsCategorias();
+    this.editoras = await editorasApi.buscarTodasAsEditoras();
   },
   methods: {
     async salvar() {
@@ -40,10 +48,14 @@ export default {
   </div>
       <div class="form-input">
       <input type="text" placeholder="Titulo do Livro"  v-model="livro.nome" @keyup.enter="salvar">
-      <input placeholder="Categoria" type="text" v-model="categoria" />
-      <input placeholder="Editora" type="text" v-model="editora" />
-      <input placeholder="Quantidade" type="number" v-model="quantidade" />
-      <input placeholder="Preço" type="number" v-model="preço" />
+      <select placeholder="Categoria" name="" id="select-e" v-model="livro.categoria">
+        <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.nome">{{ categoria.nome }}</option>
+      </select>
+      <select name="" placeholder="Editora" id="select-e" v-model="livro.editora">
+        <option v-for="editora in editoras" :key="editora.id" :value="editora.nome">{{ editora.nome }}</option>
+      </select>
+      <input placeholder="Quantidade" type="number" v-model="livro.quantidade" @keyup.enter="salvar" />
+      <input placeholder="Preço" type="number" v-model="livro.preco" @keyup.enter="salvar" />
       <button @click="salvar">Adicionar livro</button>
     </div>
     <div class="list-livros">
@@ -67,7 +79,7 @@ export default {
             <td>{{ livro.categoria }}</td>
             <td>{{ livro.editora }}</td>
             <td>{{ livro.quantidade }}</td>
-            <td>{{ livro.preço }}</td>
+            <td>{{ livro.preco }}</td>
             <td>
               <button @click="editar(livro)">Editar</button>
               <button @click="excluir(livro)">Excluir</button>
@@ -120,10 +132,6 @@ export default {
   cursor: pointer;
 }
 
-
-
-
-
 table {
   width: 100%;
   margin: 2% auto;
@@ -141,6 +149,14 @@ table tr td {
 
 table tr:nth-child(odd) {
   background-color: rgb(255, 170, 251);
+}
+
+select{
+  width: 60%;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 0 10px;
 }
 
 

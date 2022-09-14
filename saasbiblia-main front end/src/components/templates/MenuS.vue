@@ -23,21 +23,21 @@
   padding: 10px;
   margin: 10px 10px 10px 10px;
   color: white;
-  border-radius: 50px;
+  border-radius: 15px;
 }
 .menu-editoras{
   background-color: #f9e5f0;
   padding: 10px;
   margin: 10px 10px 10px 10px;
   color: white;
-  border-radius: 50px;
+  border-radius: 15px;
 }
 .menu-cat{
   background-color: #f9e5f0;
   padding: 10px;
   margin: 10px 10px 10px 10px;
   color: white;
-  border-radius: 50px;
+  border-radius: 15px;
 
 }
 .menu-aut{
@@ -45,7 +45,7 @@
   padding: 10px;
   margin: 10px 10px 10px 10px;
   color: white;
-  border-radius: 50px;
+  border-radius: 15px;
 
 }
 .menu-liv{
@@ -53,7 +53,7 @@
   padding: 10px;
   margin: 10px 10px 10px 10px;
   color: white;
-  border-radius: 50px;
+  border-radius: 15px;
 
 }
 </style>

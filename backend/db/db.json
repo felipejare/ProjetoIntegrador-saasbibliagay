@@ -3,6 +3,10 @@
     {
       "id": 1,
       "nome": "Categoria 1"
+    },
+    {
+      "nome": "categoria nova",
+      "id": 2
     }
   ],
   "editoras": [
@@ -23,12 +27,37 @@
   ],
   "livros": [
     {
-      "titulo": "2112",
+      "nome": "saas",
       "id": 1
     },
     {
-      "nome": "saas",
+      "nome": "FOOF",
       "id": 2
+    },
+    {
+      "quantidade": 123,
+      "preco": 123,
+      "id": 3
+    },
+    {
+      "nome": "123",
+      "id": 4
+    },
+    {
+      "nome": "dlc",
+      "categoria": 2,
+      "editora": 2,
+      "quantidade": 23,
+      "preco": 213,
+      "id": 5
+    },
+    {
+      "nome": "213",
+      "categoria": "categoria nova",
+      "editora": "Editora 1",
+      "quantidade": 123,
+      "preco": 123,
+      "id": 6
     }
   ],
   "autores": [

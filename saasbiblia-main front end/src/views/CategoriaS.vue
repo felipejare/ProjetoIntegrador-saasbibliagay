@@ -37,7 +37,7 @@ export default {
       <h1>Categorias</h1>
     </div>
     <div class="form-input">
-      <input type="text" v-model="categoria.nome" @keyup.enter="salvar" />
+      <input type="text" placeholder="Adicionar uma nova categoria" v-model="categoria.nome" @keyup.enter="salvar" />
       <button @click="salvar">Salvar</button>
     </div>
     <div class="list-categorias">

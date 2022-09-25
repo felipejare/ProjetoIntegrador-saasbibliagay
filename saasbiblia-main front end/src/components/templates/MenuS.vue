@@ -12,6 +12,10 @@
 
 <style>
 
+  a{
+    text-decoration-line: none;
+  }
+
 .menu {
   background-color: #773b80;
   height: inherit;

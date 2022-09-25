@@ -106,6 +106,10 @@
     {
       "nome": "JBC",
       "id": 11
+    },
+    {
+      "nome": "syuigasfyuigasfyuiogasfhpuifas",
+      "id": 12
     }
   ],
   "livros": [
@@ -116,6 +120,14 @@
       "preco": 32,
       "nome": "One Piece - Volume 1",
       "id": 2
+    },
+    {
+      "nome": "123",
+      "categoria": "Crítica Literária",
+      "editora": "Editora Intrínseca",
+      "quantidade": 123,
+      "preco": 123,
+      "id": 3
     }
   ],
   "autores": [

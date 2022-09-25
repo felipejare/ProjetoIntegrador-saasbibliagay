@@ -62,24 +62,24 @@ export default {
       <table>
         <thead>
           <tr class="contents">
-            <th>ID</th>
-            <th>Título</th>
-            <th>Categoria</th>
-            <th>Editora</th>
-            <th>Quantidade</th>
-            <th>Preço</th>
+            <th class="idezinho">ID</th>
+            <th class="tituloe">Título</th>
+            <th class="categoriae">Categoria</th>
+            <th class="editorae">Editora</th>
+            <th class="quantidadee">Quantidade</th>
+            <th class="precoe">Preço</th>
             <th>Ação</th>
           </tr>
         </thead>
 
         <tbody>
           <tr v-for="livro in livros" :key="livro.id">
-            <td>{{ livro.id }}</td>
-            <td>{{ livro.nome }}</td>
-            <td>{{ livro.categoria }}</td>
-            <td>{{ livro.editora }}</td>
-            <td>{{ livro.quantidade }}</td>
-            <td>{{ livro.preco }}</td>
+            <td class="idezinhod" >{{ livro.id }}</td>
+            <td class="titulod">{{ livro.nome }}</td>
+            <td class="categoriad">{{ livro.categoria }}</td>
+            <td class="editorad">{{ livro.editora }}</td>
+            <td class="quantidaded">{{ livro.quantidade }}</td>
+            <td class="precod">{{ livro.preco }}</td>
             <td>
               <button @click="editar(livro)">Editar</button>
               <button @click="excluir(livro)">Excluir</button>
@@ -132,6 +132,54 @@ export default {
   cursor: pointer;
 }
 
+.precoe{
+  border-left-width: 10px;
+}
+
+.idezinho{
+  border-left-width: 10px;
+}
+
+.tituloe{
+  border-left-width: 28px;
+}
+
+.categoriae{
+  border-left-width: 10px;
+}
+
+.editorae{
+  border-left-width: 10px;
+}
+
+.quantidadee{
+  border-left-width: 3px;
+}
+
+.precod{
+  border-left-width: 30px;
+}
+
+.idezinhod{
+  border-left-width: 58px;
+}
+
+.titulod{
+  border-left-width: 30px;
+}
+
+.categoriad{
+  border-left-width: 30px;
+}
+
+.editorad{
+  border-left-width: 30px;
+}
+
+.quantidaded{
+  border-left-width: 30px;
+}
+
 table {
   width: 100%;
   margin: 2% auto;
@@ -159,5 +207,12 @@ select{
   padding: 0 10px;
 }
 
+td{
+  width: 50%;
+}
+
+th{
+  width: 40%;
+}
 
 </style>
